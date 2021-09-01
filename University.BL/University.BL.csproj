@@ -54,9 +54,15 @@
   <ItemGroup>
     <Compile Include="Data\UniversityContext.cs" />
     <Compile Include="DTOs\CourseDTO.cs" />
+    <Compile Include="DTOs\InstructorDTO.cs" />
+    <Compile Include="DTOs\OfficeAssignmentDTO.cs" />
     <Compile Include="DTOs\StudentDTO.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseInstructor.cs" />
+    <Compile Include="Models\Deparment.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\Intructor.cs" />
+    <Compile Include="Models\OfficeAssignment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +70,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

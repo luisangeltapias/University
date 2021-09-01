@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using University.BL.Data;
-using University.BL.DTOs;
 using University.BL.Models;
+using University.BL.DTOs;
+using University.BL.Data;
+using System.Linq;
 
 namespace University.Web.Controllers
 {

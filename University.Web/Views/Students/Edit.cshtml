@@ -8,7 +8,7 @@
 
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-<form action="/Students/Edit" method="post">    
+<form action="/Students/Edit" method="post">
     @Html.HiddenFor(m => m.ID)
 
     @Html.DisplayNameFor(m => m.LastName)

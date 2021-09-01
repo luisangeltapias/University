@@ -5,16 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace University.BL.Models
 {
-    [Table("Student", Schema = "dbo")]
-    public class Student
+    [Table("Instructor", Schema = "dbo")]
+    public class Instructor
     {
         [Key]
         public int ID { get; set; }
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
-        public DateTime EnrollmentDate { get; set; }
+        public DateTime HireDate { get; set; }
 
         //dependencies
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual OfficeAssignment OfficeAssignment { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
+        public virtual ICollection<CourseInstructor> CourseInstructors { get; set; }
     }
 }
