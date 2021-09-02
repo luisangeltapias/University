@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using University.BL.Models;
 using University.BL.DTOs;
 using University.BL.Data;
 using System.Linq;
+using PagedList;
 
 namespace University.Web.Controllers
 {
@@ -14,8 +14,9 @@ namespace University.Web.Controllers
 
         //  Students/Index {controller}/{action}
         [HttpGet]
-        public ActionResult Index(int? studentId)
+        public ActionResult Index(int? studentId, int? pageSize, int? page)
         {
+            #region Listar estudiantes
             //SELECT * FROM Students
             var query = context.Students.ToList();
 
@@ -38,7 +39,9 @@ namespace University.Web.Controllers
                                     FirstMidName = x.FirstMidName,
                                     EnrollmentDate = x.EnrollmentDate
                                 }).ToList();
+            #endregion
 
+            #region Cursos asociados al estudiante
             if (studentId != null)
             {
                 //SELECT r.*
@@ -58,6 +61,7 @@ namespace University.Web.Controllers
 
                 ViewBag.Courses = courses;
             }
+            #endregion
 
             ViewBag.Data = "Data de prueba";
             ViewBag.Message = "Mensaje de prueba";
@@ -65,7 +69,13 @@ namespace University.Web.Controllers
             //ViewData["Data"] = "Data de prueba";
             //ViewData["Message"] = "Mensaje de prueba";
 
-            return View(students);
+            #region Paginación
+            pageSize = (pageSize ?? 10);
+            page = (page ?? 1);
+            ViewBag.PageSize = pageSize;
+            #endregion
+
+            return View(students.ToPagedList(page.Value, pageSize.Value));
         }
 
         // Students/Create
