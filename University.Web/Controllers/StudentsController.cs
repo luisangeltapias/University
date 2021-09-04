@@ -1,10 +1,10 @@
-﻿using System;
-using System.Web.Mvc;
-using University.BL.Models;
-using University.BL.DTOs;
-using University.BL.Data;
+﻿using PagedList;
+using System;
 using System.Linq;
-using PagedList;
+using System.Web.Mvc;
+using University.BL.Data;
+using University.BL.DTOs;
+using University.BL.Models;
 
 namespace University.Web.Controllers
 {
@@ -32,7 +32,7 @@ namespace University.Web.Controllers
 
             //Linq
             var students = query.Where(x => x.EnrollmentDate < DateTime.Now)
-                                .Select(x => new StudentDTO
+                                .Select(x => new StudentDTOs
                                 {
                                     ID = x.ID,
                                     LastName = x.LastName,
@@ -86,7 +86,7 @@ namespace University.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(StudentDTO student)
+        public ActionResult Create(StudentDTOs student)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace University.Web.Controllers
         {
             //var query = context.Students.Find(id);
             var student = context.Students.Where(x => x.ID == id)
-                                          .Select(x => new StudentDTO
+                                          .Select(x => new StudentDTOs
                                           {
                                               ID = x.ID,
                                               LastName = x.LastName,
@@ -132,7 +132,7 @@ namespace University.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(StudentDTO student)
+        public ActionResult Edit(StudentDTOs student)
         {
             try
             {

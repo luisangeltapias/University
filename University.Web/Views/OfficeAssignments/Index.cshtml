@@ -1,4 +1,4 @@
-﻿@model IEnumerable<University.BL.DTOs.OfficeAssignmentDTO>
+﻿@model IEnumerable<University.BL.DTOs.OfficeAssignmentDTOs>
 
 @{
     ViewBag.Title = "Index";
@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
+        <th>
+            options
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -28,6 +31,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+            </td>
+
         </tr>
     }
 

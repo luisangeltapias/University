@@ -1,0 +1,46 @@
+﻿@using PagedList.Mvc
+@model IEnumerable<University.BL.DTOs.CourseDTO>
+
+
+
+@{ ViewBag.Title = "Index"; }
+
+
+
+<h2>Index Course </h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Course", null, new { @class = "btn btn-sm btn-primary" })
+</p>
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>CourseID</th>
+            <th>Titles</th>
+            <th>Credits</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>@item.CourseID</td>
+    <td>@item.Title</td>
+    <td>@item.Credits</td>
+
+
+
+    <td>
+        @Html.ActionLink("Crear", "Index", "Course", new { CourseId = item.CourseID }, new { @class = "btn btn-sm btn-info" })
+        @Html.ActionLink("Edit", "Delete", "Course", new { id = item.Title }, new { @class = "btn btn-sm btn-primary" })
+        @Html.ActionLink("Delete", "Delete", "Course", new { id = item.Title }, new { @class = "btn btn-sm btn-danger" })
+    </td>
+</tr>}
+    </tbody>
+</table>

@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
 namespace University.BL.DTOs
 {
-    public class OfficeAssignmentDTO
+    public class OfficeAssignmentDTOs
     {
         [Required]
         public int InstructorID { get; set; }
@@ -12,6 +13,8 @@ namespace University.BL.DTOs
         public string Location { get; set; }
 
         //navs dtos
-        public InstructorDTO Instructor { get; set; }
-    }
+        public InstructorDTOs Instructor { get; set; }
+       
+      
+}
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System;
 
 namespace University.BL.DTOs
 {
-    public class InstructorDTO
+    public class InstructorDTOs
     {
         public int ID { get; set; }
         public string LastName { get; set; }
