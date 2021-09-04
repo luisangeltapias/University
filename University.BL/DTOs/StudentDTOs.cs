@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace University.BL.DTOs
 {
-    public class StudentDTO
+    public class StudentDTOs
     {
+        
         [Display(Name = "ID")]
         [Required(ErrorMessage = "El campo ID es requerido.")]
         public int ID { get; set; }
