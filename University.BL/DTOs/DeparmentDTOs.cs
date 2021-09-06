@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 namespace University.BL.DTOs
 {
     public class DeparmentDTO
@@ -10,6 +9,6 @@ namespace University.BL.DTOs
         public DateTime StartDate { get; set; }
 
         public int InstructorID { get; set; }
- 
+
     }
 }

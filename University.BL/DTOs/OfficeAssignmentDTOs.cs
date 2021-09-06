@@ -14,7 +14,7 @@ namespace University.BL.DTOs
 
         //navs dtos
         public InstructorDTOs Instructor { get; set; }
-       
-      
-}
+
+
+    }
 }

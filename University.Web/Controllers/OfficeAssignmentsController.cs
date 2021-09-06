@@ -68,11 +68,11 @@ namespace University.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int Instructorid) 
+        public ActionResult Edit(int Instructorid)
         {
             //var query = context.Students.Find(id);
-            var offices =  context.OfficeAssignments.Where(x => x.InstructorID ==Instructorid )
-         
+            var offices = context.OfficeAssignments.Where(x => x.InstructorID == Instructorid)
+
                                           .Select(x => new OfficeAssignmentDTOs
                                           {
                                               InstructorID = x.InstructorID,
@@ -89,10 +89,10 @@ namespace University.Web.Controllers
                 if (!ModelState.IsValid)
                     return View(office);
 
-               
+
 
                 //var studentModel = context.Students.Where(x => x.ID == student.ID).Select(x => x).FirstOrDefault();
-                var officeModels = context.OfficeAssignments.FirstOrDefault(x =>x.InstructorID==office.InstructorID);
+                var officeModels = context.OfficeAssignments.FirstOrDefault(x => x.InstructorID == office.InstructorID);
 
                 //campos que se van a modificar
                 //sobreescribo las propiedades del modelo de base de datos
@@ -116,14 +116,14 @@ namespace University.Web.Controllers
         }
 
 
-[HttpGet]
+        [HttpGet]
         public ActionResult Delete(int Instructorid)
         {
-            
-                var officeModel = context.OfficeAssignments.FirstOrDefault(x => x.InstructorID == Instructorid);
-                context.OfficeAssignments.Remove(officeModel);
-                context.SaveChanges();
-            
+
+            var officeModel = context.OfficeAssignments.FirstOrDefault(x => x.InstructorID == Instructorid);
+            context.OfficeAssignments.Remove(officeModel);
+            context.SaveChanges();
+
 
             return RedirectToAction("Index");
         }

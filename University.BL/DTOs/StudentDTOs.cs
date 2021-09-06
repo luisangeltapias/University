@@ -5,7 +5,7 @@ namespace University.BL.DTOs
 {
     public class StudentDTOs
     {
-        
+
         [Display(Name = "ID")]
         [Required(ErrorMessage = "El campo ID es requerido.")]
         public int ID { get; set; }

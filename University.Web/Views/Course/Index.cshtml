@@ -1,5 +1,6 @@
 ﻿@using PagedList.Mvc
-@model IEnumerable<University.BL.DTOs.CourseDTO>
+@model PagedList.IPagedList<University.BL.DTOs.CourseDTO>
+
 
 
 
@@ -14,6 +15,16 @@
 <p>
     @Html.ActionLink("Create New", "Create", "Course", null, new { @class = "btn btn-sm btn-primary" })
 </p>
+@using (Html.BeginForm("Index", "Courses", FormMethod.Get))
+{
+<p>
+    <select name="PageSize" id="PageSize" class="form-control">
+        <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>10</option>
+        <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>15</option>
+    </select>
+    <br />
+    <input type="submit" value="Apply" class="btn btn-primary" />
+</p>}
 
 
 
@@ -33,14 +44,41 @@
     <td>@item.CourseID</td>
     <td>@item.Title</td>
     <td>@item.Credits</td>
-
-
-
     <td>
-        @Html.ActionLink("Crear", "Index", "Course", new { CourseId = item.CourseID }, new { @class = "btn btn-sm btn-info" })
-        @Html.ActionLink("Edit", "Delete", "Course", new { id = item.Title }, new { @class = "btn btn-sm btn-primary" })
-        @Html.ActionLink("Delete", "Delete", "Course", new { id = item.Title }, new { @class = "btn btn-sm btn-danger" })
+        @Html.ActionLink("Instructor", "Index", "Course", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-info" })
+        @Html.ActionLink("Edit", "Edit", "Course", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-primary" })
+        @Html.ActionLink("Delete", "Delete", "Course", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-danger" })
     </td>
 </tr>}
     </tbody>
 </table>
+<br />
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+@Html.PagedListPager(Model, page => Url.Action("Index", "Course", new { page, pageSize = ViewBag.PageSize }))
+
+
+
+@if (ViewBag.Instructores != null)
+{
+<h1>Instructores</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Last Name</th>
+                            <th>First MidName</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (List<University.BL.DTOs.InstructorDTOs>)ViewBag.Instructores)
+                        {
+        <tr>
+            <td>@item.LastName</td>
+            <td>@item.FirstMidName</td>
+        </tr>}
+                    </tbody>
+                </table>}
