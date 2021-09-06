@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using LinqToDB;
+using System.Web.Mvc;
 
 namespace University.Web
 {
@@ -9,4 +10,8 @@ namespace University.Web
             filters.Add(new HandleErrorAttribute());
         }
     }
+    <connectionStrings>
+    <add name = "DefaultConnection" connectionString="Data Source=LATM;Initial Catalog=University;User ID=UserUniversity;Password=123456" ProviderName="System.Data.SqlClient" />
 }
+
+
