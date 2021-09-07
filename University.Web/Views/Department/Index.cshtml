@@ -1,57 +1,72 @@
-﻿@model IEnumerable<University.BL.DTOs.DeparmentDTO>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<University.BL.DTOs.DeparmentDTO>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+
+@{ ViewBag.Title = "Index"; }
+<br />
+<h2>Bienvenido al Departaments</h2>
+<br />
+
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" New ", "Create", "Department", new { @class = "btn btn-sm btn-primary" })
 </p>
-<table class="table">
+<br />
+
+
+
+<table class="table table-bordered" style="background-color:white">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Budget)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InstructorID)
-        </th>
-        <th></th>
+        <th>DepartmentID</th>
+        <th>Name</th>
+        <th>Budget</th>
+        <th>StartDate </th>
+        <th>FullName</th>
+        <th>Options</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Budget)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InstructorID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DepartmentID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Budget)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Instructor.FullName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }, new { @class = "btn btn-sm btn-success" })
+
+
+
+        @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-sm btn-danger" })
+    </td>
+</tr>}
+
+
 
 </table>
+
+
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+
+
+
+Total Item Count @Model.TotalItemCount
+@Html.PagedListPager(Model, page => Url.Action("Index", "Departments", new { page, pageSize = ViewBag.PageSize }))
